@@ -58,6 +58,18 @@ typedef uintmax_t uatomic_max_t;
 #define USE_ATOMIC_COMPILER_BUILTINS 0
 #define ATOMIC_EXCHANGE_USES_CAS 0
 
+/*
+XXX:
+    Lock Instruction:
+        The LOCK prefix ensures that the CPU has exclusive ownership
+        of the appropriate cache line for the duration of the operation,
+        and provides certain additional ordering guarantees. This may
+        be achieved by asserting a bus lock, but the CPU will avoid
+        this where possible. If the bus is locked then it is only for
+        the duration of the locked instruction.
+
+    https://stackoverflow.com/questions/8891067/what-does-the-lock-instruction-mean-in-x86-assembly
+*/
 
 #define atomic_compare_and_exchange_val_acq(mem, newval, oldval) \
   __sync_val_compare_and_swap (mem, oldval, newval)
