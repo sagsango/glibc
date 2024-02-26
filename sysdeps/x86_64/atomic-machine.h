@@ -279,6 +279,7 @@ typedef uintmax_t uatomic_max_t;
 			  "i" (offsetof (tcbhead_t, multiple_threads)));      \
   } while (0)
 
+/* @ atomic increment */
 #define atomic_increment(mem) __arch_increment_body (LOCK_PREFIX, mem)
 
 #define __arch_increment_cprefix \
@@ -338,6 +339,7 @@ typedef uintmax_t uatomic_max_t;
 #define __arch_decrement_cprefix \
   "cmpl $0, %%fs:%P2\n\tje 0f\n\tlock\n0:\t"
 
+/* atmic decrement */
 #define catomic_decrement(mem) \
   __arch_decrement_body (__arch_decrement_cprefix, mem)
 
@@ -476,6 +478,7 @@ typedef uintmax_t uatomic_max_t;
    provide stronger guarantees (e.g., regarding self-modifying code).  */
 #define atomic_full_barrier() \
     __asm __volatile (LOCK_PREFIX "orl $0, (%%rsp)" ::: "memory")
+/* atomic barrier in x86, which flush the write buffer appropriatly */
 #define atomic_read_barrier() __asm ("" ::: "memory")
 #define atomic_write_barrier() __asm ("" ::: "memory")
 
