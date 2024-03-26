@@ -1320,6 +1320,7 @@ nextchunk-> +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 #pragma GCC poison mchunk_prev_size
 
 /*
+  XXX:
    -------------------- Internal data structures --------------------
 
    All internal state is held in an instance of malloc_state defined
@@ -2246,6 +2247,7 @@ do_check_malloc_state (mstate av)
 
 /* ----------- Routines dealing with system allocation -------------- */
 
+/* XXX: malloc handler function, with sys prefix */
 /*
    sysmalloc handles malloc cases requiring more memory from the system.
    On entry, it is assumed that av->top does not have enough
@@ -2740,6 +2742,7 @@ sysmalloc (INTERNAL_SIZE_T nb, mstate av)
    returns 1 if it actually released any memory, else 0.
  */
 
+/* XXX: lib function have sys prefix? */
 static int
 systrim (size_t pad, mstate av)
 {
